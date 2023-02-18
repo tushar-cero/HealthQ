@@ -1,0 +1,62 @@
+footer {
+    width: 100%;
+    padding-bottom: 24px;
+}
+
+footer .footer_card {
+    background-color: var(--background-color-primary);
+    color: var(--text-color-light-alpha);
+    border-radius: 8px;
+    width: 60%;
+    padding: 60px;
+    margin: 0 auto 48px auto;
+}
+footer .footer_card .footer_card_wrapper {
+    text-align: center;
+}
+footer .footer_card .footer_card_wrapper p {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 60px;
+}
+footer .footer_card .footer_card_wrapper a {
+    display: inline-block;
+}
+
+
+
+footer .footer_main {
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+}
+footer .footer_main div {
+    text-align: center;
+    color: var(--text-color-light-beta);
+    font-size: 14px;
+}
+footer .footer_main div p {
+    padding-bottom: 4px;
+}
+footer .footer_main div figure {
+    background-color: var(--background-color-primary);
+    border-radius: 4px;
+    height: 60px;
+    aspect-ratio: 1;
+    margin-inline: auto;
+    margin-bottom: 16px;
+}
+footer .footer_main ul li.list_heading {
+    font-weight: 600;
+    color: var(--text-color-dark-gamma);
+}
+footer .footer_main ul li {
+    margin-bottom: 8px;
+    color: var(--text-color-dark-beta);
+}
+footer .footer_main ul li a:hover {
+    text-decoration: underline;
+}
+footer .footer_main ul li span {
+    padding-right: 8px;
+}

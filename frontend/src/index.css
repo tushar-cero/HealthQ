@@ -1,6 +1,8 @@
 /*----------GLOBAL CSS----------*/
 
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 
 *{
     box-sizing: border-box;
@@ -10,6 +12,7 @@
     outline:0;
     font-size:100%;
     vertical-align:baseline;
+	font-family: 'Inter', sans-serif;
 }
 html { 
     -webkit-font-smoothing: antialiased; 
@@ -44,17 +47,39 @@ a {
 
 
 :root {
-    --primary-color: ;
-    --primary-color-hover: ;
-    --secondary-color: ;
-    --secondary-color-hover: ;
+
+	/* MAIN COLORS */
+	
+    --primary-color: #0E20FF;
     
-    --background-color: ;
-    --border-color: ;
-    --border-color-active: ;
+	/* BACKGROUND COLORS */
+	
+    --background-color-primary: #0E20FF;
+    --background-color-primary-hover: rgba(14, 32, 255, 0.1);
+	
+    --background-color-dark-alpha: #;
+    --background-color-dark-alpha: #;
+	
+    --background-color-light-alpha: #FFF;
+    --background-color-light-beta: #F0F0F0;
     
-    --white-color: #fff;
-    --black-color: #000;
+	/* BORDER COLORS */
+	
+	--border-color-primary: #0E20FF;
+	--border-color-white: #fff;
+	
+	/* TEXT COLORS */
+	
+	--text-color-primary: #0E20FF;
+    
+    --text-color-dark-alpha: #232323;
+    --text-color-dark-beta: #444;
+    --text-color-dark-gamma: #AAA;
+    
+	--text-color-light-alpha: #F0F0F0;
+    --text-color-light-beta: #AAA;
+    --text-color-light-gamma: #6c6c6c;
+    
 }
 
 
@@ -69,6 +94,17 @@ a {
 	padding-right: 1rem;
 	margin: 0 auto;
 }
+
+.highlight_primary {
+	color: var(--text-color-primary);
+}
+
+
+
+/*----------BACKGROUND IMAGE----------*/
+
+
+
 .background_image_contain {
 	background-image: inherit;
 	background-position: center;
@@ -110,27 +146,63 @@ a {
 
 
 .btn_container {
-	margin: 36px auto 0 auto;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	width: 100%;
+	height: auto;
 }
 
 .btn {
+	text-transform: uppercase;
     padding: 16px 24px;
-    border-radius: 4px;
-    font-size: 18px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: 600;
 	line-height: 1;
 	vertical-align: baseline;
 }
 .btn_primary {
-    color: var(--light-text-color-primary);
-    background: linear-gradient(135deg, rgba(117,16,247,1) 0%, rgba(247,16,71,1) 100%);
-    /* background: linear-gradient(135deg, #ddff00 0%, #00ffbb 100%); */
+	text-transform: uppercase;
+    color: var(--text-color-light-alpha);
+    background-color: var(--background-color-primary);
+	border: var(--border-color-primary) 2px solid;
 }
 .btn_primary:hover {
-    display: block;
-    transform: scale(1.1);
-    box-shadow: rgba(117,16,247,0.5) 0px 5px 15px;
+	color: var(--text-color-primary);
+	background-color: var(--background-color-light-alpha);
+    /* box-shadow: rgba(117,16,247,0.5) 0px 5px 15px; */
     transition: all 0.35s ease;
+}
+.btn_secondary,
+.btn_tertiary {
+	text-transform: uppercase;
+	color: var(--text-color-dark-alpha);
+    background-color: var(--background-color-primary-hover);
+	border: var(--border-color-primary) 2px solid;
+}
+.btn_secondary:hover {
+	color: var(--text-color-primary);
+	background-color: var(--background-color-light-alpha);
+    /* box-shadow: rgba(117,16,247,0.5) 0px 5px 15px; */
+    transition: all 0.35s ease;
+}
+.btn_tertiary:hover {
+	color: var(--text-color-light-alpha);
+    background-color: var(--background-color-primary);
+    /* box-shadow: rgba(117,16,247,0.5) 0px 5px 15px; */
+    transition: all 0.35s ease;
+}
+.btn_quaternary {
+	text-transform: uppercase;
+	border: var(--border-color-white) 2px solid;
+    color: var(--text-color-primary);
+    background-color: var(--background-color-light-alpha);
+}
+.btn_quaternary:hover {
+	color: var(--text-color-light-alpha);
+	background-color: var(--background-color-primary);
+	transition: all 0.35s ease;
 }
 
 
@@ -165,6 +237,26 @@ a {
 	justify-content: space-around;
 }
 
+.flex_space_evenly {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+
+	justify-content: space-evenly;
+}
+
+
+
+.flex_wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
 .flex_wrap_evenly {
 	display: flex;
 	flex-wrap: wrap;
@@ -185,22 +277,14 @@ a {
 	justify-content: space-around;
 }
 
-.flex_space_evenly {
-	display: flex;
-	align-items: center;
-	height: 100%;
-	width: 100%;
-
-	justify-content: space-evenly;
-}
-
-.flex_wrap {
+.flex_wrap_between {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 	align-items: center;
 	height: 100%;
 	width: 100%;
+
+	justify-content: space-between;
 }
 
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import Home from "./Pages/Home/Home";
+import Error from "./Pages/Error/Error";
+
 // import React, { useRef, useState, useEffect } from 'react';
 // import { AnimatePresence } from "framer-motion"; // cover Routes with the tag
 

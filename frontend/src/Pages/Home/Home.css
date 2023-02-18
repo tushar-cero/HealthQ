@@ -1,0 +1,28 @@
+.Landing {
+    height: 100vh;
+    min-height: 600px;
+}
+
+.Landing .landing_grid .landing_grid_left .landing_grid_left_wraper h1 {
+    font-size: 36px;
+    color: var(--text-color-dark-alpha);
+    margin-bottom: 24px;
+}
+.Landing .landing_grid .landing_grid_left .landing_grid_left_wraper p {
+    font-size: 18px;
+    color: var(--text-color-dark-beta);
+    margin-bottom: 16px;
+}
+.Landing .landing_grid .landing_grid_left .landing_grid_left_wraper ul {
+    font-size: 16px;
+    padding-left: 16px;
+    margin-bottom: 48px;
+}
+.Landing .landing_grid .landing_grid_left .landing_grid_left_wraper ul li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+.Landing .landing_grid .landing_grid_left .landing_grid_left_wraper ul li i {
+    width: 18px;
+}
