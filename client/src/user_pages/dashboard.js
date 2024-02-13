@@ -25,6 +25,46 @@ const Dashboard = () => {
             "imageURL": "https://images.pexels.com/photos/8942093/pexels-photo-8942093.jpeg"
         },
         {
+            "name": "Dr. Michael Williams",
+            "designation": "Cardiologist",
+            "location": "St. Jude Hospital",
+            "expertise": [
+                "Heart disease",
+                "Coronary artery disease",
+                "Congestive heart failure"
+            ],
+            "years_of_experience": 15,
+            "rating": 4.8,
+            "availability": {
+                "Monday": "8:00 AM - 5:00 PM",
+                "Tuesday": "9:00 AM - 4:00 PM",
+                "Wednesday": "Closed",
+                "Thursday": "8:00 AM - 5:00 PM",
+                "Friday": "Closed"
+            },
+            "imageURL": "https://images.pexels.com/photos/8942093/pexels-photo-8942093.jpeg"
+        },
+        {
+            "name": "Dr. Michael Williams",
+            "designation": "Cardiologist",
+            "location": "St. Jude Hospital",
+            "expertise": [
+                "Heart disease",
+                "Coronary artery disease",
+                "Congestive heart failure"
+            ],
+            "years_of_experience": 15,
+            "rating": 4.8,
+            "availability": {
+                "Monday": "8:00 AM - 5:00 PM",
+                "Tuesday": "9:00 AM - 4:00 PM",
+                "Wednesday": "Closed",
+                "Thursday": "8:00 AM - 5:00 PM",
+                "Friday": "Closed"
+            },
+            "imageURL": "https://images.pexels.com/photos/8942093/pexels-photo-8942093.jpeg"
+        },
+        {
             "name": "Dr. Sarah Jones",
             "designation": "Dermatologist",
             "location": "Central Skin Clinic",
@@ -138,7 +178,7 @@ const Dashboard = () => {
     return (
         <article className='h-screen flex flex-auto overflow-hidden'>
             <Navigation/>
-            <div className='p-6 w-full mx-auto flex justify-center items-start'>
+            <div className='p-6 w-full mx-auto flex justify-center items-start border border-red-500'>
                 <aside className='w-1/2'>
                     <p className='text-base font-medium text-gray-400 pb-4'>Your Appointments</p>
                     <p className='text-xl font-medium px-8'>You have no appointments today</p>
@@ -148,17 +188,19 @@ const Dashboard = () => {
                         <div className="relative">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                 </svg>
                             </div>
                             <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-gray-200 dark:placeholder-gray-600 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Find doctors near you" required/>
                             <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
                     </form>
-                    <div className='overflow-scroll custom-border-doctor-cards'>
-                        <div className=''>
-                            {data.map((doctor)=>(
-                                <div className="flex justify-between items-center gap-8 p-4 custom-border-bottom-doctor-cards">
+                    {/* <div className='overflow-y-scroll custom-border-doctor-cards h-full'>
+                        <div className=''> */}
+                    <div className="flex-1 justify-between flex flex-col h-screen custom-border-doctor-cards mb-4">
+                        <div className="flex flex-col space-y-4 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+                            {data.map((doctor, idx)=>(
+                                <div key={idx} className="flex justify-between items-center gap-8 p-4 custom-border-bottom-doctor-cards">
                                     <div className='flex justify-center items-center gap-8'>
                                         <img className="h-16 w-16 flex-none rounded-full bg-gray-50" src={doctor.imageURL} alt="Doctor's Profile" />
                                         <div>
