@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-border-doctor-cards {
+    border: 1px solid #d8d8d8;
+    border-radius: 16px;
+}
+.custom-border-bottom-doctor-cards {
+    border-bottom: 1px solid #d8d8d8;
+}
