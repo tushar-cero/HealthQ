@@ -6,7 +6,7 @@ const Navigation = () => {
     const location  = useLocation();
 
     return (
-        <nav className='w-1/5 m-2 py-8 px-8 shadow-sm sticky top-0 bg-indigo-50 rounded-md flex flex-col justify-between'>
+        <nav className='w-1/5 max-w-[240px] m-2 py-8 px-8 shadow-sm sticky top-0 bg-indigo-50 rounded-md flex flex-col justify-between'>
             <div className="flex justify-center">
                 <img className="h-8 w-auto" src={logo_icon} alt="Your Company"/>
             </div>

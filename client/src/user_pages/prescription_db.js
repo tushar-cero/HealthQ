@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from '../components/navigation';
+import ViewPrescription from '../components/view_prescription';
 
 const prescriptionData = [
     {
@@ -56,13 +57,15 @@ const prescriptionData = [
 
 const PrescriptionDb = () => {
     return (
-        <article className='h-screen flex flex-auto overflow-hidden'>
+        <>
+        
+        <article className='h-screen flex flex-auto overflow-hidden relative'>
             <Navigation/>
             <div className='h-screen w-full overflow-y-scroll'>
                 <div className='py-2 px-6'>
                     <h1 className='text-3xl font-bold py-6'>Your Prescriptions</h1>
                     {prescriptionData.map((prescription, idx) => (
-                        <div className='flex justify-between items-center p-6 mb-4 rounded-2xl bg-indigo-50' key={idx}>
+                      <div className='flex justify-between items-center p-6 mb-4 rounded-2xl bg-indigo-50' key={idx}>
                             <div>
                                 <span className='text-indigo-500 text-xs font-bold pb-4'>{prescription.doctor_type}</span>
                                 <p>{prescription.doctor_name}</p>
@@ -74,6 +77,9 @@ const PrescriptionDb = () => {
                 </div>
             </div>
         </article>
+        <ViewPrescription/>
+
+        </>
     );
 }
 
