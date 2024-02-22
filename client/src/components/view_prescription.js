@@ -1,57 +1,74 @@
 import React from 'react';
 
-const ViewPrescription = () => {
-    return (
-        <div className='absolute top-0 left-0 h-screen w-screen flex justify-center items-center bg-[rgba(0,0,0,0.5)]'>
-            <div className='flex flex-col bg-white p-9 aspect-[1/1.4]'>
-                {/* Header */}
-                <div className='flex gap-4'>
-                    <div>
-                        <p>Patient's name</p>
-                        <p>Phone Number</p>
-                        <p>Age</p>
-                        <p>Gender</p>
-                        <p>Weight</p>
-                        <p>Height</p>
-                    </div>
-                    <div>
-                        <p>Doctor's name</p>
-                        <p>Phone Number</p>
-                        <p>Email Address</p>
-                        <p>Clinics address</p>
-                        <p>Designation · 4 years of experience</p>
-                        <p>Speciality</p>
-                    </div>
-                </div>
-                {/* Observation */}
-                <h2>Observation</h2>
-                <ul>
-                    <li>Patient presented with [symptoms].</li>
-                    <li>[Any relevant observations during examination].</li>
-                    <li>[Any specific vitals or measurements].</li>
-                </ul>
-                {/* Diagnosis */}
-                <h2>Diagnosis</h2>
-                <ul>
-                    <li>Provisional Diagnosis: [Provisional Diagnosis]</li>
-                    <li>Final Diagnosis: [Final Diagnosis]</li>
-                </ul>
-                {/* Medicines */}
-                <ol>
-                    <li>[Medicine Name 1] - [Dosage and Administration Instructions]</li>
-                    <li>[Medicine Name 2] - [Dosage and Administration Instructions]</li>
-                    <li>[Medicine Name 3] - [Dosage and Administration Instructions]</li>
-                </ol>
-                {/* Recommendation */}
-                <h2>Recommendation</h2>
-                <ul>
-                    <li>[Any lifestyle or dietary recommendations].</li>
-                    <li>[Follow-up instructions or scheduled appointments].</li>
-                    <li>[Emergency contact information].</li>
-                </ul>
-            </div>
+const ViewPrescription = ({ prescriptionData }) => {
+  return (
+    <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-start bg-[rgba(0,0,0,0.5)] overflow-y-scroll">
+      <div className="flex flex-col bg-white p-6 aspect-1/1.4 w-4/5 m-6">
+        {/* ----- Header ----- */}
+        <div className='pb-4'>
+          <p>{prescriptionData.doctor.name}</p>
+          <p>{prescriptionData.doctor.address}</p>
+          <p>{prescriptionData.doctor.designation}</p>
+          <p>{prescriptionData.doctor.specialty}</p>
         </div>
-    );
-}
+
+        <div className="flex justify-between gap-2 flex-wrap border custom-border-bottom-doctor-cards px-6 py-3">
+          <p>{prescriptionData.patient.name}</p>
+          <p>{prescriptionData.patient.age} | {prescriptionData.patient.gender}</p>
+          <p>Weight: {prescriptionData.patient.weight}kgs</p> 
+          <p>Height: {prescriptionData.patient.height}cms</p> 
+        </div>
+
+        {/* ----- Observation ----- */}
+        <h2 className="text-xl font-medium py-4">Observation</h2>
+        <ul className="pl-6 list-disc">
+          {prescriptionData.observations.map((observation) => (
+            <li key={observation}>{observation}</li>
+          ))}
+        </ul>
+
+        <hr className="mt-4" />
+
+        {/* ----- Diagnosis ----- */}
+        <h2 className="text-xl font-medium py-4">Diagnosis</h2>
+        <ul className="pl-6 mb-6 list-disc">
+          {prescriptionData.diagnosis.map((diagnosisItem) => (
+            <li key={diagnosisItem}>{diagnosisItem}</li> 
+          ))}
+        </ul>
+
+        {/* ----- Medicines ----- */}
+            <table className='medicine-table'>
+                <thead>
+                    <tr>
+                    <th>Sr. No.</th> 
+                    <th>Medicine Name</th> 
+                    <th>Dosage</th> 
+                    <th>Instructions</th> 
+                    </tr> 
+                </thead>
+                <tbody>
+                    {prescriptionData.medicine.map((medicine, idx) => (
+                    <tr key={medicine.name}>
+                        <td>{idx+1}</td>
+                        <td>{medicine.name}</td>
+                        <td>{medicine.daily_dosage} times a day</td>
+                        <td>{medicine.instructions || ''}</td> 
+                    </tr>
+                    ))}
+                </tbody>
+            </table>
+
+        {/* ----- Recommendation ----- */}
+        <h2 className="text-xl font-medium py-4">Recommendation</h2>
+        <ul className="pl-6 list-disc">
+          {prescriptionData.recommendations.map((recommendation) => (
+            <li key={recommendation}>{recommendation}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
 export default ViewPrescription;

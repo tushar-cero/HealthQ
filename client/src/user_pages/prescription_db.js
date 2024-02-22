@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from '../components/navigation';
 import ViewPrescription from '../components/view_prescription';
 
-const prescriptionData = [
+const prescriptionList = [
     {
       doctor_type: "Cardiologist",
       doctor_name: "Dr. Michael Williams",
@@ -53,7 +53,39 @@ const prescriptionData = [
         doctor_name: "Dr. Mark Smith",
         upload_date: "18th Dec, 2023"
       }
-  ];
+];
+
+const prescriptionData = {
+  "doctor": {
+    "name": "Dr. Alice Smith",
+    "address": "123 Main Street, Anytown, CA 12345", 
+    "designation": "Cardiologist · 4 yrs of exp", 
+    "specialty": "Cardiology" 
+  },
+  "patient": {
+    "name": "John Doe",
+    "age": 35,
+    "gender": "Male",
+    "weight": 75, 
+    "height": 170, 
+  },
+  "observations": [
+    "Chest pain",
+    "Shortness of breath"
+  ],
+  "diagnosis": [
+    "Angina pectoris" 
+  ],
+  "medicine": [
+    { "name": "Aspirin", "daily_dosage": "3", "instructions": "With food"  },
+    { "name": "Nitroglycerin", "daily_dosage": "2", "instructions": "" }
+  ],
+  "recommendations": [
+    "Lifestyle changes",
+    "Regular follow-up appointments"
+  ]
+}
+
 
 const PrescriptionDb = () => {
     return (
@@ -64,7 +96,7 @@ const PrescriptionDb = () => {
             <div className='h-screen w-full overflow-y-scroll'>
                 <div className='py-2 px-6'>
                     <h1 className='text-3xl font-bold py-6'>Your Prescriptions</h1>
-                    {prescriptionData.map((prescription, idx) => (
+                    {prescriptionList.map((prescription, idx) => (
                       <div className='flex justify-between items-center p-6 mb-4 rounded-2xl bg-indigo-50' key={idx}>
                             <div>
                                 <span className='text-indigo-500 text-xs font-bold pb-4'>{prescription.doctor_type}</span>
@@ -77,7 +109,7 @@ const PrescriptionDb = () => {
                 </div>
             </div>
         </article>
-        <ViewPrescription/>
+        <ViewPrescription prescriptionData={prescriptionData}/>
 
         </>
     );

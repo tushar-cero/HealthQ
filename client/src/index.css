@@ -22,3 +22,17 @@
 .navigation_inactive {
     @apply text-gray-700 hover:text-blue-900 hover:border-b-2 hover:border-blue-900 text-base font-medium;
 }
+
+.medicine-table { 
+    border: 1px solid #d8d8d8;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+.medicine-table th,
+.medicine-table td {
+    border: 1px solid #d8d8d8;
+} 
+.medicine-table th {
+    background-color: #e0f4ff;
+}

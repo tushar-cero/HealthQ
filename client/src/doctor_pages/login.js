@@ -1,19 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo_icon from '../icons/android-chrome-192x192.png';
-import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
 
     const loginHandler = () => {
-        navigate('/dashboard');
+        navigate('/doc-dashboard');
     }
 
     return (
         <article class="mx-auto h-full flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <img class="mx-auto h-10 w-auto" src={logo_icon} alt="Your Company"/>
-                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+                <img class="mx-auto h-10 w-auto" src={logo_icon} alt="HealthQ"/>
+                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Doctor's Sign in</h2>
             </div>
 
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -40,7 +40,6 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <div className='py-6 text-blue-500 underline'><Link to='/doc-login'>Login as a Doctor</Link></div>
             </div>
         </article>
     );
