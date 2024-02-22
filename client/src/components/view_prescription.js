@@ -5,11 +5,18 @@ const ViewPrescription = ({ prescriptionData }) => {
     <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-start bg-[rgba(0,0,0,0.5)] overflow-y-scroll">
       <div className="flex flex-col bg-white p-6 aspect-1/1.4 w-4/5 m-6">
         {/* ----- Header ----- */}
-        <div className='pb-4'>
-          <p>{prescriptionData.doctor.name}</p>
-          <p>{prescriptionData.doctor.address}</p>
-          <p>{prescriptionData.doctor.designation}</p>
-          <p>{prescriptionData.doctor.specialty}</p>
+        <div className='pb-4 flex justify-between'>
+          <div className='flex gap-4'>
+            <img class="h-12 w-auto" src="https://www.shutterstock.com/image-vector/medical-healthy-clinic-logo-concept-260nw-1398954623.jpg" alt="Clinic"/>
+            <div>
+              <p className='text-lg font-semibold'>{prescriptionData.doctor.name}</p>
+              <p className='text-sm'>{prescriptionData.doctor.designation}</p>
+              <p className='text-sm'>{prescriptionData.doctor.specialty}</p>
+            </div>
+          </div>
+          <div>
+            <p>{prescriptionData.doctor.address}</p>
+          </div>
         </div>
 
         <div className="flex justify-between gap-2 flex-wrap border custom-border-bottom-doctor-cards px-6 py-3">

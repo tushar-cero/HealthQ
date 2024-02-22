@@ -178,7 +178,7 @@ const Dashboard = () => {
     return (
         <article className='h-screen flex flex-auto overflow-hidden'>
             <Navigation/>
-            <div className='p-6 w-full mx-auto flex justify-center items-start border border-red-500'>
+            <div className='p-6 w-full mx-auto flex justify-center items-start'>
                 <aside className='w-1/2'>
                     <p className='text-base font-medium text-gray-400 pb-4'>Your Appointments</p>
                     <p className='text-xl font-medium px-8'>You have no appointments today</p>

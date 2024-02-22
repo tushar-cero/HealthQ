@@ -82,7 +82,8 @@ const prescriptionData = {
   ],
   "recommendations": [
     "Lifestyle changes",
-    "Regular follow-up appointments"
+    "Regular follow-up appointments",
+    "Take medicines for 10 days"
   ]
 }
 
