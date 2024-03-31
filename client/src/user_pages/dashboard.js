@@ -1,7 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navigation from '../components/navigation';
+import Modal from '../components/modal';
+import Toast from '../components/toast';
 
 const Dashboard = () => {
+
+    const [showToast, setShowToast] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [doctorName, setDoctorName] = useState("");
+    const handleBookAppointmentConfirmation = (name) => {
+        setDoctorName(name);
+        setShowModal(!showModal);
+    }
+    const handleBookAppointment = () => {
+        setShowModal(!showModal);
+        setShowToast(true);
+    }
       
     const data = [
         {
@@ -176,6 +190,8 @@ const Dashboard = () => {
     ];
 
     return (
+        <>
+
         <article className='h-screen flex flex-auto overflow-hidden'>
             <Navigation/>
             <div className='p-6 w-full mx-auto flex justify-center items-start'>
@@ -183,7 +199,7 @@ const Dashboard = () => {
                     <p className='text-base font-medium text-gray-400 pb-4'>Your Appointments</p>
                     <p className='text-xl font-medium px-8'>You have no appointments today</p>
                 </aside>
-                <div className='w-full'>
+                <div className='w-full h-full'>
                     <form className='mb-6'>
                         <div className="relative">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -195,9 +211,8 @@ const Dashboard = () => {
                             <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
                     </form>
-                    {/* <div className='overflow-y-scroll custom-border-doctor-cards h-full'>
-                        <div className=''> */}
-                    <div className="flex-1 justify-between flex flex-col h-screen custom-border-doctor-cards mb-4">
+                    
+                    <div className="flex-1 justify-between flex flex-col custom-border-doctor-cards mb-4" style={{'height': '87%'}}>
                         <div className="flex flex-col space-y-4 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
                             {data.map((doctor, idx)=>(
                                 <div key={idx} className="flex justify-between items-center gap-8 p-4 custom-border-bottom-doctor-cards">
@@ -210,7 +225,13 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm font-semibold leading-6 text-gray-900 mb-2">{doctor.location}</p>
-                                        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">BOOK APPOINTMENT</button>
+                                        <button 
+                                            type="button" 
+                                            onClick={()=>handleBookAppointmentConfirmation(doctor.name)} 
+                                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                        >
+                                            BOOK APPOINTMENT
+                                        </button>
                                     </div>
                                 </div>     
                             ))}
@@ -219,6 +240,10 @@ const Dashboard = () => {
                 </div>     
             </div>
         </article>
+        
+        <Modal showModal={showModal} setShowModal={setShowModal} handleBookAppointment={handleBookAppointment} name={doctorName}/>
+        <Toast message="Your appointment has been confirmed" type='success' showToast={showToast} setShowToast={setShowToast} />
+        </>
     );
 }
 

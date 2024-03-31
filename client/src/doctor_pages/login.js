@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo_icon from '../icons/android-chrome-192x192.png';
 
 const Login = () => {
@@ -35,10 +35,9 @@ const Login = () => {
                     </div>
 
                     <div>
-                        <button onClick={loginHandler} type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Sign in
-                        </button>
+                        <button onClick={loginHandler} type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
                     </div>
+                    <div className='py-6 text-blue-500 underline'><Link to='/login'>Login as a user</Link></div>
                 </form>
             </div>
         </article>
