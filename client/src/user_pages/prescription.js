@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/navigation';
 import ViewPrescription from '../components/view_prescription';
 
@@ -87,8 +87,15 @@ const prescriptionData = {
   ]
 }
 
+const Prescription = () => {
 
-const PrescriptionDb = () => {
+  const [openPrescription, setOpenPrescription] = useState(false);
+  const [currentPrescriptionData, setCurrentPrescriptionData] = useState({})
+  const handleViewPrescription = (data) => {
+    setCurrentPrescriptionData(data);
+    setOpenPrescription(true);
+  }
+
     return (
         <>
         
@@ -104,16 +111,16 @@ const PrescriptionDb = () => {
                                 <p>{prescription.doctor_name}</p>
                             </div>
                             <p>Last updated on {prescription.upload_date}</p>
-                            <button className='rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>VIEW</button>
+                            <button onClick={()=>handleViewPrescription(prescriptionData)} className='rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>VIEW</button>
                         </div>
                     ))}
                 </div>
             </div>
         </article>
-        <ViewPrescription prescriptionData={prescriptionData}/>
+        <ViewPrescription openPrescription={openPrescription} setOpenPrescription={setOpenPrescription} prescriptionData={currentPrescriptionData}/>
 
         </>
     );
 }
 
-export default PrescriptionDb;
+export default Prescription;

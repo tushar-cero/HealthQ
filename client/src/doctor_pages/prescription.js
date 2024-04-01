@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ViewPrescription from '../components/view_prescription.js';
 
 const Prescription = () => {
+
     const [prescriptionData, setPrescriptionData] = useState({
         doctor: {
             name: '',
@@ -35,24 +35,22 @@ const Prescription = () => {
 
     const handleSubmitPrescription = (event) => {
         event.preventDefault();
-        // ... Logic to validate and potentially submit the prescription data ...
+        // API Call
     };
 
   return (
     <div>
       <h2>Write Prescription</h2>
       <form onSubmit={handleSubmitPrescription}>
-        {/* ... Input fields for doctor, patient, observations, etc. ... */}
+        
+        
 
         {/* Button to trigger preview */}
-        {/* <button type="button" onClick={() => setPreviewMode(true)}>Preview</button> */}
-        <button type="submit">Save Prescription</button>
+        <div className='flex gap-6 justify-center item-center'>
+          <button type="button" onClick={() => setPreviewMode(true)}>Preview</button>
+          <button type="submit">Save</button>
+        </div>
       </form>
-
-      {/* Conditionally render ViewPrescription to show preview */}
-      {/* {previewMode && (
-        <ViewPrescription prescriptionData={prescriptionData} />
-      )} */}
     </div>
   );
 };

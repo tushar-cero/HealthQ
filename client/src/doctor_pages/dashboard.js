@@ -58,7 +58,7 @@ const Dashboard = () => {
             <header className='flex justify-center px-6 py-4'>
                 <div className=' container flex justify-between'>
                     <img class="h-10 w-auto" src={logo_icon} alt="Your Company"/>
-                    <Link to='doc-login' className='text-red-500 hover:bg-gray-300 hover:text-red rounded-md px-6 py-3 text-sm font-medium'>Logout</Link>
+                    <Link to='/doc-login' className='text-red-500 hover:bg-gray-300 hover:text-red rounded-md px-6 py-3 text-sm font-medium'>Logout</Link>
                 </div>
             </header>
             <div className='p-6 w-full'>

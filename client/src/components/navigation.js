@@ -19,7 +19,7 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col justify-center items-center  gap-4">
                 <img className="h-12 w-12 rounded-full border-blue border-2" src="https://img.freepik.com/free-vector/isolated-young-handsome-man-set-different-poses-white-background-illustration_632498-649.jpg?w=740&t=st=1705314141~exp=1705314741~hmac=0a99d811618454c8165e4fdc6b71649bca9ebb44f8d9a7ac156600071d76ef72" alt=""/>
-                <a href="www.google.com" className="text-red-500 hover:bg-gray-300 hover:text-red rounded-md px-6 py-3 text-sm font-medium"><i className="fa fa-sign-out mr-2" aria-hidden="true"></i> Log Out</a>
+                <Link to="/" className="text-red-500 hover:bg-gray-300 hover:text-red rounded-md px-6 py-3 text-sm font-medium"><i className="fa fa-sign-out mr-2" aria-hidden="true"></i> Log Out</Link>
             </div>
         </nav>
     );
