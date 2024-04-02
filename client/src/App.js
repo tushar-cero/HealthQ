@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/chat" element={<Chat/>}></Route>
             <Route exact path="/doc-login" element={<DocLogin/>}></Route>
             <Route exact path="/doc-dashboard" element={<DocDashboard/>}></Route>
-            <Route exact path="/doc-prescriptions" element={<DocPrescription/>}></Route>
+            <Route exact path="/write-prescription" element={<DocPrescription/>}></Route>
             <Route exact path="/coming-soon" element={<ComingSoon/>}></Route>
             <Route exact path="/error" element={<Error/>}></Route>
             <Route path="*" element={<Error/>}/>

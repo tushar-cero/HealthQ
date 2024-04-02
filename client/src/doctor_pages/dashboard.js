@@ -1,8 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo_icon from '../icons/android-chrome-192x192.png';
 
 const Dashboard = () => {
+
+const navigate = useNavigate();
+    const ViewPrescriptionHandler = () => {
+        navigate('/write-prescription');
+    }
 
     const data = [
         {
@@ -79,7 +84,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className='flex justify-between items-center'>
                                     <p className=''>{timeStampHandler(patient_data.timestamp)}</p>
-                                    <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>PRESCRIBE</button>
+                                    <button onClick={()=>ViewPrescriptionHandler()} className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>PRESCRIBE</button>
                                 </div>
                             </div>
                         ))
