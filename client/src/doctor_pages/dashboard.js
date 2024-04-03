@@ -62,7 +62,7 @@ const navigate = useNavigate();
         <article className='h-screen'>
             <header className='flex justify-center px-6 py-4'>
                 <div className=' container flex justify-between'>
-                    <img class="h-10 w-auto" src={logo_icon} alt="Your Company"/>
+                    <img className="h-10 w-auto" src={logo_icon} alt="Your Company"/>
                     <Link to='/doc-login' className='text-red-500 hover:bg-gray-300 hover:text-red rounded-md px-6 py-3 text-sm font-medium'>Logout</Link>
                 </div>
             </header>
@@ -76,7 +76,7 @@ const navigate = useNavigate();
                         data.map((patient_data, idx)=> (
                             <div key={idx} className='p-6 border custom-border-bottom-doctor-cards rounded-lg mb-4'>
                                 <div className='flex gap-4 mb-4'>
-                                    <img class="h-12 w-auto rounded-full" src="https://www.w3schools.com/w3images/avatar3.png" alt="Patient"/>
+                                    <img className="h-12 w-auto rounded-full" src="https://www.w3schools.com/w3images/avatar3.png" alt="Patient"/>
                                     <div className=''>
                                         <p>{patient_data.name}</p>
                                         <p>{patient_data.age} • {patient_data.gender}</p>

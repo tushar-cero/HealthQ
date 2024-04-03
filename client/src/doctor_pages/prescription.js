@@ -24,11 +24,12 @@ const Prescription = () => {
     });
     const [newObservation, setNewObservation] = useState('');
     const [newDiagnosis, setNewDiagnosis] = useState("");
-    const [newMedicine, setNewMedicine] = useState({
-        name: '',
-        dailyDosage: '',
-        instructions: ''
-    });
+    // const [newMedicine, setNewMedicine] = useState({
+    //     id: '',
+    //     name: '',
+    //     dailyDosage: '',
+    //     instructions: ''
+    // });
     const [newRecommendation, setNewRecommendation] = useState("");
 
     const handleAddObservations = (newObservation) => {
@@ -44,22 +45,26 @@ const Prescription = () => {
         }));
     };
 
-    const handleInputChange = (event, newMedicine) => {
-        const { name, value } = event.target; 
-        setNewMedicine({ 
-            ...newMedicine, 
-            [name]: value 
-        });
-    };
+    const [medicineName, setMedicineName] = useState('');
+    const [dailyDosage, setDailyDosage] = useState('');
+    const [instructions, setInstructions] = useState('');
 
-    const handleAddMedicine = (newMedicine) => {
+    const handleAddMedicine = () => {
+        const medicineData = {
+            id: generateRandomString(),
+            name: medicineName,
+            dailyDosage,
+            instructions
+        };
+        console.log(prescriptionData.medicine);
+        
         setPrescriptionData((prevState) => ({
             ...prevState,
-            medicine: [...prevState.medicine, newMedicine],
+            medicine: [...prevState.medicine, medicineData],
         }));
     
         // Reset the medicine input fields after adding
-        setNewMedicine({ name: '', dailyDosage: '', instructions: '' });
+        setMedicineName('');
     };
 
     const handleAddRecommendation = (newRecommendation) => {
@@ -74,6 +79,16 @@ const Prescription = () => {
         console.log(prescriptionData);
         // API Call
     };
+
+    function generateRandomString() {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        for (let i = 0; i < 8; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }    
 
     return (
         <div className='px-6'>
@@ -150,7 +165,7 @@ const Prescription = () => {
                         </thead>
                         <tbody>
                             {prescriptionData.medicine.map((medicine, idx) => (
-                                <tr key={medicine.name}>
+                                <tr key={medicine.id}>
                                     <td>{idx + 1}</td>
                                     <td>{medicine.name}</td>
                                     <td>{medicine.dailyDosage} times a day</td>
@@ -161,13 +176,13 @@ const Prescription = () => {
                     </table>
                     <div className="flex justify-between items-center gap-2 my-4">
                         <label className='w-max' htmlFor="medicine-name">Medicine Name:</label>
-                        <input value={newMedicine.name} onChange={(event)=>handleInputChange(event,'name')} className='prescription-input-fields' type="text" id="medicine-name" name="medicine-name" required/>
+                        <input className='prescription-input-fields' type="text" id="medicine-name" name="medicine-name" required onChange={e => setMedicineName(e.target.value)}/>
 
                         <label className='w-max' htmlFor="daily-dosage">Daily Dosage:</label>
-                        <input value={newMedicine.dailyDosage} onChange={(event)=>handleInputChange(event,'dailyDosage')} className='prescription-input-fields' type="text" id="daily-dosage" name="daily-dosage" required/>
+                        <input className='prescription-input-fields' type="text" id="daily-dosage" name="daily-dosage" required onChange={e => setDailyDosage(e.target.value)}/>
 
                         <label className='w-max' htmlFor="medicine-instructions">Instructions:</label>
-                        <input value={newMedicine.instructions} onChange={(event)=>handleInputChange(event,'instructions')} className='prescription-input-fields' id="medicine-instructions" name="instructions"/>
+                        <input className='prescription-input-fields' id="medicine-instructions" name="instructions" onChange={e => setInstructions(e.target.value)}/>
                         <button onClick={()=>handleAddMedicine()} className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>ADD</button>
                     </div>
 
@@ -179,7 +194,7 @@ const Prescription = () => {
                             ))}
                     </ul>
                     <div className='flex justify-center items-center my-4'>
-                        <input value={newRecommendation} onChange={(e) => setNewRecommendation(e.target.value)} className='prescription-input-fields' id="recommendations" name="recommendations" required/>
+                        <input value={newRecommendation} onChange={(e) => setNewRecommendation(e.target.value)} className='prescription-input-fields' id="recommendations" name="recommendations"/>
                         <button onClick={()=>handleAddRecommendation(newRecommendation)} className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>ADD</button>
                     </div>
                 </div>
