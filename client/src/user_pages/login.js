@@ -17,25 +17,25 @@ const Login = () => {
         event.preventDefault(); 
         console.log("login done");
 
-        navigate('/dashboard');
-        // try {
-        //     const response = await fetch('/your-api-endpoint', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify(loginInfo),
-        //     });
+        // navigate('/dashboard');
+        try {
+            const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:M54rpXBR/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginInfo),
+            });
     
-        //     if (response.ok) {
-        //         console.log('Login successful');
-        //         navigate('/dashboard');
-        //     } else {
-        //         console.error('Login failed:', await response.text());
-        //     }
-        // } catch (error) {
-        //     console.error('Error:', error); 
-        // }
+            if (response.ok) {
+                console.log('Login successful');
+                navigate('/dashboard');
+            } else {
+                console.error('Login failed:', await response.text());
+            }
+        } catch (error) {
+            console.error('Error:', error); 
+        }
     };
 
     return (

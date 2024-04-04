@@ -1,193 +1,48 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import Navigation from '../components/navigation';
 import Modal from '../components/modal';
 import Toast from '../components/toast';
 
 const Dashboard = () => {
 
+    const [fetching, setFetching] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [doctorName, setDoctorName] = useState("");
+    const [doctorFetchData, setDoctorFetchData] = useState();
+    
     const handleBookAppointmentConfirmation = (name) => {
         setDoctorName(name);
         setShowModal(!showModal);
     }
     const handleBookAppointment = () => {
         setShowModal(!showModal);
+        
         setShowToast(true);
     }
-      
-    const data = [
-        {
-            "name": "Dr. Michael Williams",
-            "designation": "Cardiologist",
-            "location": "St. Jude Hospital",
-            "expertise": [
-                "Heart disease",
-                "Coronary artery disease",
-                "Congestive heart failure"
-            ],
-            "years_of_experience": 15,
-            "rating": 4.8,
-            "availability": {
-                "Monday": "8:00 AM - 5:00 PM",
-                "Tuesday": "9:00 AM - 4:00 PM",
-                "Wednesday": "Closed",
-                "Thursday": "8:00 AM - 5:00 PM",
-                "Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/8942093/pexels-photo-8942093.jpeg"
-        },
-        {
-            "name": "Dr. Michael Williams",
-            "designation": "Cardiologist",
-            "location": "St. Jude Hospital",
-            "expertise": [
-                "Heart disease",
-                "Coronary artery disease",
-                "Congestive heart failure"
-            ],
-            "years_of_experience": 15,
-            "rating": 4.8,
-            "availability": {
-                "Monday": "8:00 AM - 5:00 PM",
-                "Tuesday": "9:00 AM - 4:00 PM",
-                "Wednesday": "Closed",
-                "Thursday": "8:00 AM - 5:00 PM",
-                "Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/8942093/pexels-photo-8942093.jpeg"
-        },
-        {
-            "name": "Dr. Michael Williams",
-            "designation": "Cardiologist",
-            "location": "St. Jude Hospital",
-            "expertise": [
-                "Heart disease",
-                "Coronary artery disease",
-                "Congestive heart failure"
-            ],
-            "years_of_experience": 15,
-            "rating": 4.8,
-            "availability": {
-                "Monday": "8:00 AM - 5:00 PM",
-                "Tuesday": "9:00 AM - 4:00 PM",
-                "Wednesday": "Closed",
-                "Thursday": "8:00 AM - 5:00 PM",
-                "Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/8942093/pexels-photo-8942093.jpeg"
-        },
-        {
-            "name": "Dr. Sarah Jones",
-            "designation": "Dermatologist",
-            "location": "Central Skin Clinic",
-            "expertise": [
-                "Acne",
-                "Psoriasis",
-                "Eczema",
-                "Skin cancer"
-            ],
-            "years_of_experience": 10,
-            "rating": 4.5,
-            "availability": {
-                "Monday-Tuesday": "9:00 AM - 5:00 PM",
-                "Wednesday-Thursday": "Closed",
-                "Friday": "8:00 AM - 4:00 PM"
-            },
-            "imageURL": "https://images.pexels.com/photos/8942523/pexels-photo-8942523.jpeg"
-        },
-        {
-            "name": "Dr. Jennifer Lee",
-            "designation": "Pediatrician",
-            "location": "Happy Kidz Pediatrics",
-            "expertise": [
-                "Childhood illnesses",
-                "Vaccinations",
-                "Developmental milestones",
-                "Nutrition"
-            ],
-            "years_of_experience": 7,
-            "rating": 4.9,
-            "availability": {
-                "Monday-Friday": "8:00 AM - 4:00 PM",
-                "Saturday": "9:00 AM - 1:00 PM"
-            },
-            "imageURL": "https://images.pexels.com/photos/19218034/pexels-photo-19218034/free-photo-of-smiling-doctor-in-a-lab-coat-and-with-a-stethoscope.jpeg"
-        },
-        {
-            "name": "Dr. Olivia Smith",
-            "designation": "Neurologist",
-            "location": "Brain & Spine Center",
-            "expertise": [
-                "Headaches",
-                "Stroke",
-                "Alzheimer's disease",
-                "Multiple sclerosis"
-            ],
-            "years_of_experience": 20,
-            "rating": 4.7,
-            "availability": {
-                "Monday-Wednesday": "9:00 AM - 6:00 PM",
-                "Thursday-Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/5998465/pexels-photo-5998465.jpeg"
-        },
-        {
-            "name": "Dr. Emily Garcia",
-            "designation": "Dentist",
-            "location": "Bright Smiles Dental",
-            "expertise": [
-                "General dentistry",
-                "Teeth whitening",
-                "Dental implants",
-                "Orthodontics"
-            ],
-            "years_of_experience": 5,
-            "rating": 4.2,
-            "availability": {
-                "Tuesday-Thursday": "9:00 AM - 5:00 PM",
-                "Monday-Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg"
-        },
-        {
-            "name": "Dr. Emily Garcia",
-            "designation": "Dentist",
-            "location": "Bright Smiles Dental",
-            "expertise": [
-                "General dentistry",
-                "Teeth whitening",
-                "Dental implants",
-                "Orthodontics"
-            ],
-            "years_of_experience": 5,
-            "rating": 4.2,
-            "availability": {
-                "Tuesday-Thursday": "9:00 AM - 5:00 PM",
-                "Monday-Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg"
-        },
-        {
-            "name": "Dr. Emily Garcia",
-            "designation": "Dentist",
-            "location": "Bright Smiles Dental",
-            "expertise": [
-                "General dentistry",
-                "Teeth whitening",
-                "Dental implants",
-                "Orthodontics"
-            ],
-            "years_of_experience": 5,
-            "rating": 4.2,
-            "availability": {
-                "Tuesday-Thursday": "9:00 AM - 5:00 PM",
-                "Monday-Friday": "Closed"
-            },
-            "imageURL": "https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg"
-        }
-    ];
+
+    useEffect(() => {
+        setFetching(true);
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('https://x8ki-letl-twmt.n7.xano.io/api:M54rpXBR/doctors');
+            const { data } = response;
+            if (Array.isArray(data)) {
+                setDoctorFetchData(data);
+            } else {
+                console.error('Unexpected API response: data is not an array', data);
+            }
+            setFetching(false);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+            setFetching(false);
+          }
+        };
+    
+        fetchData();
+    }, []);
+    
 
     return (
         <>
@@ -214,10 +69,10 @@ const Dashboard = () => {
                     
                     <div className="flex-1 justify-between flex flex-col custom-border-doctor-cards mb-4" style={{'height': '87%'}}>
                         <div className="flex flex-col space-y-4 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-                            {data.map((doctor, idx)=>(
+                            {!fetching && doctorFetchData && Array.isArray(doctorFetchData) && doctorFetchData.map((doctor, idx)=>(
                                 <div key={idx} className="flex justify-between items-center gap-8 p-4 custom-border-bottom-doctor-cards">
                                     <div className='flex justify-center items-center gap-8'>
-                                        <img className="h-16 w-16 flex-none rounded-full bg-gray-50" src={doctor.imageURL} alt="Doctor's Profile" />
+                                        <img className="h-16 w-16 flex-none rounded-full bg-gray-50" src={doctor.profile_photo.url} alt="Doctor's Profile" />
                                         <div>
                                             <p><span className="text-base font-semibold text-gray-900">{doctor.name}</span> • <span className="text-sm font-regular text-gray-600">{doctor.designation}</span></p>
                                             <p><span className="text-sm font-regular text-gray-600">{doctor.rating}/5.0</span> • <span className="text-sm font-regular text-gray-600">{doctor.years_of_experience} Years of Experience</span></p>

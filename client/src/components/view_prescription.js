@@ -14,7 +14,7 @@ const ViewPrescription = ({ openPrescription, setOpenPrescription, prescriptionD
         {/* ----- Header ----- */}
         <div className='pb-4 flex justify-between'>
           <div className='flex gap-4'>
-            <img class="h-12 w-auto" src="https://www.shutterstock.com/image-vector/medical-healthy-clinic-logo-concept-260nw-1398954623.jpg" alt="Clinic"/>
+            <img className="h-12 w-auto" src="https://www.shutterstock.com/image-vector/medical-healthy-clinic-logo-concept-260nw-1398954623.jpg" alt="Clinic"/>
             <div>
               <p className='text-lg font-semibold'>{prescriptionData.doctor.name}</p>
               <p className='text-sm'>{prescriptionData.doctor.designation}</p>

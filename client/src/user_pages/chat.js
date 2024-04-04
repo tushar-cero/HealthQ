@@ -1,60 +1,60 @@
 import React, {useState} from 'react';
 import Navigation from '../components/navigation';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
 const Chat = () => {
     
     const [prompt, setPrompt] = useState("");
     const [fetching, setFetching] = useState("");
-    // const [response, setResponse] = useState("response");
     const [conversation, setConversation] = useState([]);
     
+    const API_KEY = "<API>";
+    const genAI = new GoogleGenerativeAI(API_KEY);
+
     const sendPrompt = async () => {
         setFetching(true);
-        
-        // Replace 'YourAPIFunction' with your actual API function and 'apiParams' with the actual parameters your API function needs
-        const API_URL = 'https://api.openai.com/v1/chat/completions';
-        const OPEN_AI_API = "";
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${OPEN_AI_API}`
-        }
-        const data = {
-            'model': 'gpt-3.5-turbo',
-            'message': [
-                {
-                    role: 'system',
-                    content: 'you are a medical professional built by HealthQ'
-                },
-                {
-                    role: 'user', 
-                    prompt
-                }
-            ]
-        }
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(data)
-        })
-    
-        const apiResponse = await response.json();
-    
-        if (apiResponse && apiResponse.choices && apiResponse.choices[0] && apiResponse.choices[0].message && apiResponse.choices[0].message.content) {
-            setConversation((prevState) => ([
-                ...prevState,
-                {
-                    prompt: prompt,
-                    response: apiResponse.choices[0].message.content
-                }
-            ]));
-        } else {
-            console.error('Unexpected API response', apiResponse);
-        }
-        
+        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+
+        const userprompt = prompt
+
+        const result = await model.generateContent(userprompt);
+        const response = await result.response;
+        const text = response.text();
+        setConversation((prevState) => ([
+            ...prevState,
+            {
+                prompt: prompt,
+                response: text
+            }
+        ]));
+        console.log(conversation);
+        setPrompt("");
         setFetching(false);
-    };
-    
+    }
+
+    const reponseFormat = (text, idx) => {
+        if (text.includes('**')) {
+            const formattedResponse = text.split('**').filter(str => str).map(str => {
+                const [title, description] = str.split(':');
+                return { title: title.trim(), description: description ? description.trim() : '' };
+            });
+
+            return formattedResponse.map((remedy, idx) => (
+                <div key={idx}>
+                    <h2>{remedy.title}</h2>
+                    <p>{remedy.description}</p>
+                </div>
+            ));
+        } else {
+            // If the response is a simple text, render it directly
+            return (
+                <div key={idx}>
+                    <p>{text}</p>
+                </div>
+            );
+        }
+    }
 
     return (
         <article className='h-screen flex flex-auto overflow-hidden'>
@@ -64,12 +64,13 @@ const Chat = () => {
                     <div>
                         {
                             conversation.map((message, idx) => (
-                                (message.role === 'user') ?
-                                    <div key={idx} className='p-6 rounded-lg bg-indigo-100'>{message.content}</div>
-                                :
-                                    <div key={idx} className='p-6'>{message.content}</div>
+                            <>
+                                <div key={idx} className='p-6 rounded-lg bg-indigo-100'>{message.prompt}</div>
+                                <div key={idx} className='p-6'>{reponseFormat(message.response, idx)}</div>
+                            </>
                             ))
                         }
+                        
                     </div>
                 </div>
                 <div className="border px-4 py-4 w-full">
@@ -86,7 +87,7 @@ const Chat = () => {
                             onClick={sendPrompt}
                             type="button" 
                             className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
-                        >   Send
+                        >   {(fetching)? "Thinking": "Send"}
                         </button>
                     </div>
                 </div>
