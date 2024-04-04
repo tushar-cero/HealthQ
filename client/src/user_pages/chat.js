@@ -14,7 +14,7 @@ const Chat = () => {
         
         // Replace 'YourAPIFunction' with your actual API function and 'apiParams' with the actual parameters your API function needs
         const API_URL = 'https://api.openai.com/v1/chat/completions';
-        const OPEN_AI_API = "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";
+        const OPEN_AI_API = "";
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${OPEN_AI_API}`
