@@ -24,12 +24,6 @@ const Prescription = () => {
     });
     const [newObservation, setNewObservation] = useState('');
     const [newDiagnosis, setNewDiagnosis] = useState("");
-    // const [newMedicine, setNewMedicine] = useState({
-    //     id: '',
-    //     name: '',
-    //     dailyDosage: '',
-    //     instructions: ''
-    // });
     const [newRecommendation, setNewRecommendation] = useState("");
 
     const handleAddObservations = (newObservation) => {
