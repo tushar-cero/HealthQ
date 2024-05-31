@@ -14,7 +14,7 @@ const Navigation = () => {
                 <div><Link to='/dashboard' className={(location.pathname === "/" || location.pathname === "/dashboard") ? "navigation_active" : "navigation_inactive"} aria-current="page"><i className="fa fa-cube mr-2" aria-hidden="true"></i>Dashboard</Link></div>
                 <div><Link to='/prescriptions' className={location.pathname === "/prescriptions" ? "navigation_active" : "navigation_inactive"}><i className="fa fa-newspaper-o mr-2" aria-hidden="true"></i>Prescriptions</Link></div>
                 <div><Link to='/chat' className={location.pathname === "/chat" ? "navigation_active" : "navigation_inactive"}><i className="fa fa-dashcube mr-2" aria-hidden="true"></i>Chat</Link></div>
-                <div><Link to='/coming-soon' className={location.pathname === "/medical-history" ? "navigation_active" : "navigation_inactive"}><i className="fa fa-heartbeat mr-2" aria-hidden="true"></i>Medical History</Link></div>
+                {/* <div><Link to='/coming-soon' className={location.pathname === "/medical-history" ? "navigation_active" : "navigation_inactive"}><i className="fa fa-heartbeat mr-2" aria-hidden="true"></i>Medical History</Link></div> */}
                 <div><a href="mailto:tusharsingh.contact@gmail.com" className={location.pathname === "/support" ? "navigation_active" : "navigation_inactive"}><i className="fa fa-question-circle mr-2" aria-hidden="true"></i>Support</a></div>
             </div>
             <div className="flex flex-col justify-center items-center  gap-4">

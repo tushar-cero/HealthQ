@@ -7,6 +7,7 @@ import Toast from '../components/toast';
 const Dashboard = () => {
 
     const [fetching, setFetching] = useState(false);
+    const [appointmentBooked, setAppointmentBooked] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [doctorName, setDoctorName] = useState("");
@@ -18,7 +19,7 @@ const Dashboard = () => {
     }
     const handleBookAppointment = () => {
         setShowModal(!showModal);
-        
+        setAppointmentBooked(true);
         setShowToast(true);
     }
 
@@ -42,6 +43,21 @@ const Dashboard = () => {
     
         fetchData();
     }, []);
+
+    const getDate = () => {
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        let day = tomorrow.getDate();
+        let month = tomorrow.getMonth() + 1; // JavaScript months are 0-based counting
+        let year = tomorrow.getFullYear();
+
+        // Ensure day and month are two digits
+        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0' + month : month;
+
+        return `${day}/${month}/${year}`;
+    }
     
 
     return (
@@ -52,7 +68,17 @@ const Dashboard = () => {
             <div className='p-6 w-full mx-auto flex justify-center items-start'>
                 <aside className='w-1/2'>
                     <p className='text-base font-medium text-gray-400 pb-4'>Your Appointments</p>
-                    <p className='text-xl font-medium px-8'>You have no appointments today</p>
+                    {
+                        (appointmentBooked) ? 
+                            <div className="rounded-lg overflow-hidden bg-blue-100 mr-6">
+                                <div className="px-6 py-4">
+                                    <p className="text-gray-700 text-base pb-2">You have an appointment with <b>{doctorName}</b></p>
+                                    <p className="text-gray-700 text-sm">Date: {getDate()}</p>
+                                </div>
+                            </div>
+                        :
+                            <p className='text-xl font-medium px-8'>You have no appointments today</p> 
+                    }
                 </aside>
                 <div className='w-full h-full'>
                     <form className='mb-6'>
@@ -74,7 +100,7 @@ const Dashboard = () => {
                                     <div className='flex justify-center items-center gap-8'>
                                         <img className="h-16 w-16 flex-none rounded-full bg-gray-50" src={doctor.profile_photo.url} alt="Doctor's Profile" />
                                         <div>
-                                            <p><span className="text-base font-semibold text-gray-900">{doctor.name}</span> • <span className="text-sm font-regular text-gray-600">{doctor.designation}</span></p>
+                                            <p><span className="text-base font-semibold text-gray-900">{doctor.name}</span> • <span className="text-sm font-regular text-gray-600">{doctor.title}</span></p>
                                             <p><span className="text-sm font-regular text-gray-600">{doctor.rating}/5.0</span> • <span className="text-sm font-regular text-gray-600">{doctor.years_of_experience} Years of Experience</span></p>
                                         </div>
                                     </div>
@@ -82,7 +108,7 @@ const Dashboard = () => {
                                         <p className="text-sm font-semibold leading-6 text-gray-900 mb-2">{doctor.location}</p>
                                         <button 
                                             type="button" 
-                                            onClick={()=>handleBookAppointmentConfirmation(doctor.name)} 
+                                            onClick={()=>handleBookAppointmentConfirmation(doctor.name, doctor.id)} 
                                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                         >
                                             BOOK APPOINTMENT

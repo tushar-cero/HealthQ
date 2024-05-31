@@ -3,57 +3,58 @@ import Navigation from '../components/navigation';
 import ViewPrescription from '../components/view_prescription';
 
 const prescriptionList = [
-    {
-      doctor_type: "Cardiologist",
-      doctor_name: "Dr. Michael Williams",
-      upload_date: "18th Dec, 2023"
-    },
-    {
-      doctor_type: "Dermatologist",
-      doctor_name: "Dr. Sarah Jones",
-      upload_date: "18th Dec, 2023"
-    },
-    {
-      doctor_type: "Pediatrician",
-      doctor_name: "Dr. Jennifer Lee",
-      upload_date: "18th Dec, 2023"
-    },
-    {
-      doctor_type: "Neurologist",
-      doctor_name: "Dr. Olivia Smith",
-      upload_date: "18th Dec, 2023"
-    },
-    {
-      doctor_type: "Dentist",
-      doctor_name: "Dr. Emily Garcia",
-      upload_date: "18th Dec, 2023"
-    },
-    {
-        doctor_type: "Orthopedic",
-        doctor_name: "Dr. John Anderson",
-        upload_date: "18th Dec, 2023"
-      },
-      {
-        doctor_type: "Gynecologist",
-        doctor_name: "Dr. Emily Johnson",
-        upload_date: "18th Dec, 2023"
-      },
-      {
-        doctor_type: "Ophthalmologist",
-        doctor_name: "Dr. Richard Taylor",
-        upload_date: "18th Dec, 2023"
-      },
-      {
-        doctor_type: "Psychiatrist",
-        doctor_name: "Dr. Katherine Davis",
-        upload_date: "18th Dec, 2023"
-      },
-      {
-        doctor_type: "Endocrinologist",
-        doctor_name: "Dr. Mark Smith",
-        upload_date: "18th Dec, 2023"
-      }
+  {
+    doctor_type: "Cardiologist",
+    doctor_name: "Dr. Ravi Sharma",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Dermatologist",
+    doctor_name: "Dr. Sunita Gupta",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Pediatrician",
+    doctor_name: "Dr. Amit Patel",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Neurologist",
+    doctor_name: "Dr. Anjali Singh",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Dentist",
+    doctor_name: "Dr. Vijay Verma",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Orthopedic",
+    doctor_name: "Dr. Rajesh Kumar",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Gynecologist",
+    doctor_name: "Dr. Priya Malhotra",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Ophthalmologist",
+    doctor_name: "Dr. Sanjay Joshi",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Psychiatrist",
+    doctor_name: "Dr. Pooja Agarwal",
+    upload_date: "18th Dec, 2023"
+  },
+  {
+    doctor_type: "Endocrinologist",
+    doctor_name: "Dr. Manish Srivastava",
+    upload_date: "18th Dec, 2023"
+  }
 ];
+
 
 const prescriptionData = {
   "doctor": {

@@ -12,40 +12,41 @@ const navigate = useNavigate();
     const data = [
         {
             "unique_id": "12345",
-            "name": "John Doe",
+            "name": "Ravi Kumar",
             "age": 30,
             "gender": "Male",
             "timestamp": "2024-02-21T14:00:00Z"
         },
         {
             "unique_id": "67890",
-            "name": "Jane Smith",
+            "name": "Priya Sharma",
             "age": 25,
             "gender": "Female",
             "timestamp": "2024-02-20T10:00:00Z"
         },
         {
             "unique_id": "09876",
-            "name": "Michael Brown",
+            "name": "Amit Patel",
             "age": 40,
             "gender": "Male",
             "timestamp": "2024-02-22T08:00:00Z"
         },
         {
             "unique_id": "54321",
-            "name": "Alice Johnson",
+            "name": "Anjali Singh",
             "age": 35,
             "gender": "Female",
             "timestamp": "2024-02-21T16:00:00Z"
         },
         {
             "unique_id": "23456",
-            "name": "David Miller",
+            "name": "Vijay Verma",
             "age": 50,
             "gender": "Male",
             "timestamp": "2024-02-21T12:00:00Z"
         }
     ];
+    
     const timeStampHandler = (inputTimestamp) => {
         const date = new Date(inputTimestamp);
         const formattedString = date.toLocaleString('en-US', { 

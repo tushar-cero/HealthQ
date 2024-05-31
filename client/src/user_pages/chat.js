@@ -9,13 +9,13 @@ const Chat = () => {
     const [fetching, setFetching] = useState("");
     const [conversation, setConversation] = useState([]);
     
-    const API_KEY = "<API>";
+    const API_KEY = "enter-your-api-key";
     const genAI = new GoogleGenerativeAI(API_KEY);
 
     const sendPrompt = async () => {
         setFetching(true);
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-
+        setPrompt(prompt + ". You are a medical AI assistant, named HealthQ AI, designed to provide helpful and informative responses to user queries related to health and medicine. Your primary goal is to assist users in making informed decisions about their health, but you are not a substitute for professional medical advice. Try to answer in long paragraphs and simple bullet points when needed.")
         const userprompt = prompt
 
         const result = await model.generateContent(userprompt);
@@ -43,7 +43,7 @@ const Chat = () => {
             return formattedResponse.map((remedy, idx) => (
                 <div key={idx}>
                     <h2>{remedy.title}</h2>
-                    <p>{remedy.description}</p>
+                    <p className='pl-3 '>{remedy.description}</p>
                 </div>
             ));
         } else {
